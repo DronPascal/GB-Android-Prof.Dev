@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Divine Cat\'s Source</string>
+    <string name="divine">Divine!</string>
+    <string name="base">Base</string>
 </resources>
