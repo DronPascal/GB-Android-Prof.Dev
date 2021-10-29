@@ -4,33 +4,26 @@ import android.os.Bundle
 import android.view.View
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.ViewModelProvider
 import com.rhinemann.divinecatsource.R
 import com.rhinemann.divinecatsource.core.wrappers.LoadingState
 import com.rhinemann.divinecatsource.databinding.MainActivityBinding
 import com.rhinemann.divinecatsource.presentation.image.IImageLoader
-import dagger.android.AndroidInjection
-import javax.inject.Inject
+import org.koin.android.ext.android.inject
+import org.koin.androidx.viewmodel.ext.android.viewModel
+
 
 /**
  * Created by dronpascal on 28.10.2021.
  */
 class MainActivity : AppCompatActivity(R.layout.main_activity) {
 
-    @Inject
-    lateinit var viewModelFactory: ViewModelProvider.Factory
+    private val imageLoader: IImageLoader<ImageView> by inject()
 
-    @Inject
-    lateinit var imageLoader: IImageLoader<ImageView>
+    private val viewModel: MainViewModel by viewModel()
 
     private lateinit var binding: MainActivityBinding
 
-    val viewModel: MainViewModel by lazy {
-        viewModelFactory.create(MainViewModel::class.java)
-    }
-
     override fun onCreate(savedInstanceState: Bundle?) {
-        AndroidInjection.inject(this)
         super.onCreate(savedInstanceState)
 
         binding = MainActivityBinding.inflate(layoutInflater)
