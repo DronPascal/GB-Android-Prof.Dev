@@ -14,6 +14,6 @@ sealed class UIComponent {
         val message: String,
     ) : UIComponent()
 
-    object None: UIComponent()
+    object None : UIComponent()
 
 }

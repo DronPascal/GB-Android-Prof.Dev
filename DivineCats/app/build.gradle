@@ -43,44 +43,59 @@ android {
     }
 }
 
-dependencies {
-    implementation 'androidx.core:core-ktx:1.6.0'
-    implementation 'androidx.appcompat:appcompat:1.3.1'
-    implementation 'com.google.android.material:material:1.4.0'
+ext {
+    versions = [
+            dagger          : "2.35.1",
+            glide           : "4.11.0",
+            gson            : "2.8.7",
+            kotlinExt       : "2.3.1",
+            kotlinCoroutines: "1.5.2",
+            retrofit        : "2.9.0",
+            room            : "2.3.0",
+    ]
+}
 
-    implementation 'androidx.constraintlayout:constraintlayout:2.1.1'
-    implementation 'androidx.recyclerview:recyclerview:1.2.1'
-    implementation 'androidx.cardview:cardview:1.0.0'
+dependencies {
+    implementation "androidx.core:core-ktx:1.7.0"
+    implementation "androidx.appcompat:appcompat:1.3.1"
+    implementation "com.google.android.material:material:1.4.0"
+
+    implementation "androidx.constraintlayout:constraintlayout:2.1.1"
+    implementation "androidx.recyclerview:recyclerview:1.2.1"
+    implementation "androidx.cardview:cardview:1.0.0"
 
     // Dagger
-    implementation 'com.google.dagger:dagger-android:2.35.1'
-    implementation 'com.google.dagger:dagger-android-support:2.35.1'
-    kapt 'com.google.dagger:dagger-android-processor:2.35.1'
-    kapt 'com.google.dagger:dagger-compiler:2.35.1'
+    implementation "com.google.dagger:dagger-android:$versions.dagger"
+    implementation "com.google.dagger:dagger-android-support:$versions.dagger"
+    kapt "com.google.dagger:dagger-android-processor:$versions.dagger"
+    kapt "com.google.dagger:dagger-compiler:$versions.dagger"
 
     // LiveData
-    //    implementation "androidx.lifecycle:lifecycle-livedata-ktx:2.4.0"
-    //    implementation "androidx.lifecycle:lifecycle-runtime-ktx:2.4.0"
-    //    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.0"
-    //    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.0"
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:$versions.kotlinExt"
+
+    // ViewModel
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$versions.kotlinExt"
 
     // Coroutines
-    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.5.2"
-    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.5.2"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$versions.kotlinCoroutines"
+    //implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$versions.kotlinCoroutines"
+
+    // Glide
+    implementation "com.github.bumptech.glide:glide:$versions.glide"
 
     // Retrofit
-    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
-    implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
+    implementation "com.squareup.retrofit2:retrofit:$versions.retrofit"
+    implementation "com.squareup.retrofit2:converter-gson:$versions.retrofit"
     implementation "com.squareup.okhttp3:logging-interceptor:4.3.1"
 
     // Room
-    implementation 'androidx.room:room-runtime:2.3.0'
-    implementation "androidx.room:room-rxjava3:2.3.0"
-    kapt 'androidx.room:room-compiler:2.3.0'
+    implementation "androidx.room:room-runtime:$versions.room"
+    implementation "androidx.room:room-rxjava3:$versions.room"
+    kapt "androidx.room:room-compiler:$versions.room"
     kapt "org.xerial:sqlite-jdbc:3.34.0"
 
     // Test
-    testImplementation 'junit:junit:4.13.2'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.3'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
+    testImplementation "junit:junit:4.13.2"
+    androidTestImplementation "androidx.test.ext:junit:1.1.3"
+    androidTestImplementation "androidx.test.espresso:espresso-core:3.4.0"
 }
