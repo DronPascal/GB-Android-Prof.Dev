@@ -45,7 +45,7 @@ android {
 
 ext {
     versions = [
-            dagger          : "2.35.1",
+            koin_version    : "3.1.2",
             glide           : "4.11.0",
             gson            : "2.8.7",
             kotlinExt       : "2.3.1",
@@ -64,11 +64,13 @@ dependencies {
     implementation "androidx.recyclerview:recyclerview:1.2.1"
     implementation "androidx.cardview:cardview:1.0.0"
 
-    // Dagger
-    implementation "com.google.dagger:dagger-android:$versions.dagger"
-    implementation "com.google.dagger:dagger-android-support:$versions.dagger"
-    kapt "com.google.dagger:dagger-android-processor:$versions.dagger"
-    kapt "com.google.dagger:dagger-compiler:$versions.dagger"
+    //Koin for Android
+    //Koin core features
+    implementation "io.insert-koin:koin-core:$versions.koin_version"
+    //Koin main features for Android (Scope,ViewModel ...)
+    implementation "io.insert-koin:koin-android:$versions.koin_version"
+    //Koin Java Compatibility
+    implementation "io.insert-koin:koin-android-compat:$versions.koin_version"
 
     // LiveData
     implementation "androidx.lifecycle:lifecycle-livedata-ktx:$versions.kotlinExt"
