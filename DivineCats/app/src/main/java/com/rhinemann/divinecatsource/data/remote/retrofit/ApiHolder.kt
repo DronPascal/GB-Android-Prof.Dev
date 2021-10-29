@@ -6,7 +6,6 @@ import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import javax.inject.Inject
 
 /**
  * Created by dronpascal on 28.10.2021.
@@ -15,7 +14,7 @@ interface IApiHolder {
     val catApi: CatApi
 }
 
-class ApiHolder @Inject constructor(
+class ApiHolder(
     catUrlProvider: CatUrlProvider,
 ) : IApiHolder {
 
