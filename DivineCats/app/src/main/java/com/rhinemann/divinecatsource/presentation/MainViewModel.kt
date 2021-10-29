@@ -9,12 +9,11 @@ import com.rhinemann.divinecatsource.domain.interactor.IGetCat
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
-import javax.inject.Inject
 
 /**
  * Created by dronpascal on 28.10.2021.
  */
-class MainViewModel @Inject constructor(
+class MainViewModel(
     private val getCat: IGetCat
 ) : ViewModel() {
 
