@@ -7,7 +7,9 @@ import com.gb.stopwatch.data.local.timer.TimestampDataSource
 import com.gb.stopwatch.data.local.timer.helper.ElapsedTimeCalculator
 import com.gb.stopwatch.data.local.timer.helper.StopwatchStateCalculator
 import com.gb.stopwatch.domain.entity.TimestampMillisecondsFormatter
-import com.gb.stopwatch.presentation.StopwatchListViewModel
+import com.gb.stopwatch.presentation.StopwatchViewModel
+import org.koin.androidx.viewmodel.dsl.viewModel
+import org.koin.core.qualifier.named
 import org.koin.dsl.module
 
 /**
@@ -18,9 +20,9 @@ val application = module {
     single { ElapsedTimeCalculator(get()) }
     single { StopwatchStateCalculator(get(), get()) }
     single { TimestampMillisecondsFormatter() }
-    single<IStopwatchRepository> { StopwatchRepository(get(), get(), get()) }
+    factory<IStopwatchRepository> { StopwatchRepository(get(), get(), get()) }
 }
 
 val mainScreen = module {
-    factory { StopwatchListViewModel(get()) }
+    viewModel(named("QualifierName")) { StopwatchViewModel(get()) }
 }

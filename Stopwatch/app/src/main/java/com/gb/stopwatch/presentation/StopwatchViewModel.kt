@@ -11,7 +11,7 @@ import kotlinx.coroutines.flow.StateFlow
 /**
  * Created by dronpascal on 01.11.2021.
  */
-class StopwatchListViewModel(
+class StopwatchViewModel(
     private val stopwatchRepository: IStopwatchRepository,
 ) : ViewModel() {
 

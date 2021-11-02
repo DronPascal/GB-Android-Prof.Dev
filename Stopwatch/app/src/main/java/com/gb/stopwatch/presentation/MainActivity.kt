@@ -20,7 +20,9 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
 
-    private val stopwatchListViewModel: StopwatchListViewModel by viewModel()
+    private val stopwatch1ViewModel: StopwatchViewModel by viewModel(StopwatchVMQualifier(key = "first"))
+
+    private val stopwatch2ViewModel: StopwatchViewModel by viewModel(StopwatchVMQualifier(key = "second"))
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,20 +33,41 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun initView() {
+        init1Ticker()
+        init2Ticker()
+    }
+
+    private fun init1Ticker() {
         CoroutineScope(Dispatchers.Main + SupervisorJob()).launch {
-            stopwatchListViewModel.ticker.collect {
+            stopwatch1ViewModel.ticker.collect {
                 binding.textTime.text = it
-                println(it)
             }
         }
         binding.buttonStart.setOnClickListener {
-            stopwatchListViewModel.start()
+            stopwatch1ViewModel.start()
         }
         binding.buttonPause.setOnClickListener {
-            stopwatchListViewModel.pause()
+            stopwatch1ViewModel.pause()
         }
         binding.buttonStop.setOnClickListener {
-            stopwatchListViewModel.stop()
+            stopwatch1ViewModel.stop()
+        }
+    }
+
+    private fun init2Ticker() {
+        CoroutineScope(Dispatchers.Main + SupervisorJob()).launch {
+            stopwatch2ViewModel.ticker.collect {
+                binding.textTime2.text = it
+            }
+        }
+        binding.buttonStart2.setOnClickListener {
+            stopwatch2ViewModel.start()
+        }
+        binding.buttonPause2.setOnClickListener {
+            stopwatch2ViewModel.pause()
+        }
+        binding.buttonStop2.setOnClickListener {
+            stopwatch2ViewModel.stop()
         }
     }
 }
