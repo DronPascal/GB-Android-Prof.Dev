@@ -2,8 +2,8 @@ package com.gb.stopwatch.data.local.timer
 
 import com.gb.stopwatch.data.local.timer.helper.ElapsedTimeCalculator
 import com.gb.stopwatch.data.local.timer.helper.StopwatchStateCalculator
-import com.gb.stopwatch.domain.model.StopwatchState
 import com.gb.stopwatch.domain.entity.TimestampMillisecondsFormatter
+import com.gb.stopwatch.domain.model.StopwatchState
 
 /**
  * Created by dronpascal on 01.11.2021.
