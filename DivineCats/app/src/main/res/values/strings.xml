@@ -1,5 +1,22 @@
 <resources>
+
     <string name="app_name">Divine Cat\'s Source</string>
+
     <string name="divine">Divine!</string>
-    <string name="base">Base</string>
+    <string name="based">Based</string>
+    <string name="cringe">Cringe</string>
+
+    <string name="home">Home</string>
+    <string name="search">Search</string>
+    <string name="favorite">Favorite</string>
+    <string name="settings">Settings</string>
+    <string name="add_to_favorite">Add to favorite</string>
+    <string name="save">Save</string>
+    <string name="search_cats_button">Search cats button</string>
+    <string name="watch_cats">Watch cats</string>
+    <string name="search_here">Search here...</string>
+    <string name="choose_breed">Choose Breed</string>
+    <string name="choose_categories">Choose Categories</string>
+    <string name="saved">Saved</string>
+
 </resources>

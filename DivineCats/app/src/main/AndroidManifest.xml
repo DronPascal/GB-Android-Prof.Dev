@@ -11,7 +11,7 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.DivineCatsSource">
+        android:theme="@style/Theme.DivineCatsSource.NoActionBar">
 
         <activity
             android:name=".presentation.MainActivity"

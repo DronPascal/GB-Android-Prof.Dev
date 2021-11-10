@@ -1,17 +1,17 @@
 package com.rhinemann.divinecatsource.data.remote.retrofit
 
 import com.rhinemann.divinecatsource.core.CatUrlProvider
-import com.rhinemann.divinecatsource.data.remote.retrofit.cat.CatApi
+import com.rhinemann.divinecatsource.data.remote.retrofit.the_cat_api.TheCatApi
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
+import retrofit2.converter.moshi.MoshiConverterFactory
 
 /**
  * Created by dronpascal on 28.10.2021.
  */
 interface IApiHolder {
-    val catApi: CatApi
+    val theCatApi: TheCatApi
 }
 
 class ApiHolder(
@@ -26,8 +26,8 @@ class ApiHolder(
     private val retrofit = Retrofit.Builder()
         .client(client)
         .baseUrl(catUrlProvider.baseUrl)
-        .addConverterFactory(GsonConverterFactory.create())
+        .addConverterFactory(MoshiConverterFactory.create())
         .build()
 
-    override val catApi: CatApi by lazy(LazyThreadSafetyMode.NONE) { retrofit.create(CatApi::class.java) }
+    override val theCatApi: TheCatApi by lazy(LazyThreadSafetyMode.NONE) { retrofit.create(TheCatApi::class.java) }
 }
