@@ -9,7 +9,7 @@ import org.koin.dsl.module
  * Created by dronpascal on 30.10.2021.
  */
 val config = module {
-    single<BuildConfigProvider> {
+    single {
         BuildConfigProvider(
             debug = BuildConfig.DEBUG,
             appId = BuildConfig.APPLICATION_ID,
@@ -18,7 +18,7 @@ val config = module {
             versionName = BuildConfig.VERSION_NAME
         )
     }
-    single<CatUrlProvider> {
+    single {
         CatUrlProvider(
             baseUrl = BuildConfig.BASE_URL,
             apiKey = BuildConfig.THE_CAT_API_KEY,

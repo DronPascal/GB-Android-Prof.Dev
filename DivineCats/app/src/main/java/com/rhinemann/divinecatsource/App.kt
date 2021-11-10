@@ -1,10 +1,7 @@
 package com.rhinemann.divinecatsource
 
 import android.app.Application
-import com.rhinemann.divinecatsource.di.application
-import com.rhinemann.divinecatsource.di.config
-import com.rhinemann.divinecatsource.di.mainScreen
-import com.rhinemann.divinecatsource.di.network
+import com.rhinemann.divinecatsource.di.*
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
 
@@ -20,9 +17,10 @@ class App : Application() {
             androidContext(this@App)
             modules(
                 config,
-                network,
                 application,
-                mainScreen
+                randcatScreen,
+                searchScreen,
+                searchResultScreen,
             )
         }
     }
