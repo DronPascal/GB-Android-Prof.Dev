@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/wall"
+    android:backgroundTint="@color/wall_tint"
+    android:backgroundTintMode="src_over"
+    tools:context=".presentation.screen.randomcat.RandcatFragment">
+
+    <FrameLayout
+        android:id="@+id/image_holder"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_margin="16dp"
+        app:layout_constraintBottom_toTopOf="@+id/linear_layout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fab">
+
+        <ImageView
+            android:id="@+id/img_cat"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:adjustViewBounds="true"
+            android:background="@color/gray"
+            android:foreground="@drawable/frame_elegant"
+            android:scaleType="fitCenter"
+            tools:src="@drawable/preview_img" />
+
+    </FrameLayout>
+
+    <ProgressBar
+        android:id="@+id/loader"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:indeterminate="true"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:visibility="visible" />
+
+    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+        android:id="@+id/fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:backgroundTint="?attr/colorPrimary"
+        android:contentDescription="@string/add_to_favorite"
+        android:text="@string/save"
+        android:textColor="?attr/colorOnPrimary"
+        app:borderWidth="0dp"
+        app:icon="@drawable/ic_favorite"
+        app:iconTint="?attr/colorOnPrimary"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <LinearLayout
+        android:id="@+id/linear_layout"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <Button
+            android:id="@+id/btn_divine"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:backgroundTint="@color/gold"
+            android:insetTop="0dp"
+            android:insetBottom="0dp"
+            android:text="@string/divine"
+            android:textColor="@color/black"
+            app:cornerRadius="0dp" />
+
+        <Button
+            android:id="@+id/btn_based"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="3"
+            android:backgroundTint="@color/blue"
+            android:insetTop="0dp"
+            android:insetBottom="0dp"
+            android:text="@string/based"
+            android:textColor="@color/black"
+            app:cornerRadius="0dp" />
+
+        <Button
+            android:id="@+id/btn_cringe"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:backgroundTint="@color/red"
+            android:insetTop="0dp"
+            android:insetBottom="0dp"
+            android:text="@string/cringe"
+            android:textColor="@color/black"
+            app:cornerRadius="0dp" />
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
