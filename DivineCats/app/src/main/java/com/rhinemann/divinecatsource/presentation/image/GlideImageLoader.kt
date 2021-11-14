@@ -66,7 +66,7 @@ class GlideImageLoader(
         cornerRadiusPx: Int,
         @IntRange(from = -1) height: Int,
         @IntRange(from = -1) width: Int,
-        setter: (Drawable) -> Unit
+        onLoaded: (Drawable) -> Unit
     ) {
         Glide
             .with(context)
@@ -94,7 +94,7 @@ class GlideImageLoader(
                     dataSource: DataSource?,
                     isFirstResource: Boolean
                 ): Boolean {
-                    resource?.let { setter(it) }
+                    resource?.let { onLoaded(it) }
                     return true
                 }
             }).preload()

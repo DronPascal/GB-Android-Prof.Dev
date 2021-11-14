@@ -30,7 +30,7 @@ object AndroidXLifecycle {
     const val lifecycleVmKtx = "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycleVmKtxVersion"
 
     private const val lifecycleLdKtxVersion = "2.4.0"
-    const val lifecycleLdKtx = "androidx.fragment:fragment-ktx:$lifecycleLdKtxVersion"
+    const val lifecycleLdKtx = "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycleLdKtxVersion"
 }
 
 object AndroidXRoom {
