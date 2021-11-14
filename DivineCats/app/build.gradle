@@ -44,16 +44,16 @@ android {
     }
 }
 
-ext {
-    versions = [
-            koin_version    : "3.1.2",
-            glide           : "4.11.0",
-            kotlinExt       : "2.4.0",
-            kotlinCoroutines: "1.5.2",
-            retrofit        : "2.9.0",
-            room            : "2.3.0",
-    ]
-}
+//ext {
+//    versions = [
+//            koin_version    : "3.1.2",
+//            glide           : "4.11.0",
+//            kotlinExt       : "2.4.0",
+//            kotlinCoroutines: "1.5.2",
+//            retrofit        : "2.9.0",
+//            room            : "2.3.0",
+//    ]
+//}
 
 dependencies {
     implementation(AndroidX.coreKtx)
@@ -71,12 +71,13 @@ dependencies {
     implementation(Koin.koinCore)
     implementation(Koin.koinAndroid)
     implementation(Koin.koinAndroidCompat)
-    // Fragment KTX for Koin
+
+    // Fragment extensions
     implementation(AndroidX.fragmentKtx)
 
     // Lifecycle
-    implementation(AndroidXLifecycle.lifecycleLdKtx)
     implementation(AndroidXLifecycle.lifecycleVmKtx)
+    implementation(AndroidXLifecycle.lifecycleLdKtx)
 
     // Coroutines
     implementation(Kotlinx.coroutinesCore)
@@ -91,12 +92,12 @@ dependencies {
 
     // Room
     implementation(AndroidXRoom.roomRuntime)
-    implementation(AndroidXRoom.roomCompiler)
+    kapt(AndroidXRoom.roomCompiler)
     implementation(AndroidXRoom.roomKtx)
 
     implementation(Junit.junit4)
-    implementation(AndroidXTest.extJunit)
-    implementation(AndroidXTest.espressoCore)
+    androidTestImplementation(AndroidXTest.extJunit)
+    androidTestImplementation(AndroidXTest.espressoCore)
 
 
 
