@@ -12,6 +12,9 @@ object AndroidX {
 
     private const val fragmentKtxVersion = "1.3.6"
     const val fragmentKtx = "androidx.fragment:fragment-ktx:$fragmentKtxVersion"
+
+    private const val pagingVersion = "3.0.1"
+    const val paging = "androidx.paging:paging-runtime:$pagingVersion"
 }
 
 object AndroidXView {
