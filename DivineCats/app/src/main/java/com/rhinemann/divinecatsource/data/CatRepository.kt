@@ -12,6 +12,7 @@ import com.rhinemann.divinecatsource.domain.model.cat.Category
  * Created by dronpascal on 28.10.2021.
  */
 interface ICatRepository {
+
     suspend fun getRandomCat(): Cat
 
     suspend fun getSearchPage(
@@ -35,6 +36,7 @@ class CatRepository(
     private val catRemoteDataSource: ICatRemoteDataSource,
     private val catLocalDataSource: ICatLocalDataSource
 ) : ICatRepository {
+
     override suspend fun getRandomCat(): Cat {
         return catRemoteDataSource.getRandomCat().toModel()
     }

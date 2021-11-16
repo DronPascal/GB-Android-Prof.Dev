@@ -64,6 +64,9 @@ dependencies {
     implementation(AndroidXView.recyclerView)
     implementation(AndroidXView.cardView)
 
+    // Paging 3
+    implementation(AndroidX.paging)
+
     // ViewBinding property delegate
     implementation(Other.viewBindingDelegat)
 

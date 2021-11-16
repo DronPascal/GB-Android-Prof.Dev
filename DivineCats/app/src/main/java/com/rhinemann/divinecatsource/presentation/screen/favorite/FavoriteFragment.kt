@@ -29,42 +29,13 @@ class FavoriteFragment : Fragment(R.layout.fragment_search_result_cats), BackBut
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel.state.observe(viewLifecycleOwner, ::handleState)
-        viewModel.events.observe(viewLifecycleOwner, ::handleEvent)
+
         initView()
     }
 
     private fun initView() {
 
     }
-
-    private fun handleState(state: SearchResultState) =
-        when (state) {
-            is SearchResultState.Loading -> handleLoading(state)
-            is SearchResultState.Result -> handleResult(state)
-            is SearchResultState.Response -> handleResponse(state)
-        }
-
-    private fun handleLoading(state: SearchResultState.Loading) =
-        when (state.loadingState) {
-            LoadingState.Loading -> binding.loader.toVisible()
-            else -> binding.loader.toGone()
-        }
-
-    private fun handleResult(state: SearchResultState.Result) =
-        when (state) {
-            else -> Unit
-        }
-
-    private fun handleResponse(state: SearchResultState.Response) =
-        when (val component = state.uiComponent) {
-            else -> Unit
-        }
-
-    private fun handleEvent(event: SearchResultEvent) =
-        when (event) {
-            else -> Unit
-        }
 
     override fun onBackPressed() {
         navigator.backTo(SearchScreen.TAG)

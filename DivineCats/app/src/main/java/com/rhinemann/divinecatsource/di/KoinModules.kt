@@ -15,6 +15,8 @@ import com.rhinemann.divinecatsource.domain.interactor.random.GetRandomCat
 import com.rhinemann.divinecatsource.domain.interactor.random.IAddCatToFavorite
 import com.rhinemann.divinecatsource.domain.interactor.random.IGetRandomCat
 import com.rhinemann.divinecatsource.domain.interactor.search.*
+import com.rhinemann.divinecatsource.domain.interactor.search_result.GetSearchPageStream
+import com.rhinemann.divinecatsource.domain.interactor.search_result.IGetSearchPageStream
 import com.rhinemann.divinecatsource.presentation.MainActivity
 import com.rhinemann.divinecatsource.presentation.MainViewModel
 import com.rhinemann.divinecatsource.presentation.image.GlideImageLoader
@@ -62,5 +64,6 @@ val searchScreen = module {
 
 val searchResultScreen = module {
     factory<IGetSearchPage> { GetSearchPage(get()) }
+    factory<IGetSearchPageStream> { GetSearchPageStream(get()) }
     viewModel { SearchResultViewModel(get()) }
 }
