@@ -8,6 +8,7 @@ import androidx.core.content.ContextCompat.getColor
 import androidx.fragment.app.Fragment
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.rhinemann.divinecatsource.R
+import com.rhinemann.divinecatsource.core.util.Util.getScaledSize
 import com.rhinemann.divinecatsource.core.util.getColorFromAttr
 import com.rhinemann.divinecatsource.core.util.showSystemMessage
 import com.rhinemann.divinecatsource.core.util.toGone
@@ -60,15 +61,19 @@ class RandcatFragment : Fragment(R.layout.fragment_random_cat) {
 
     private fun handleCurrentCat(cat: Cat?) = cat?.let {
         binding.loader.toVisible()
-        val (maxW, maxH) = binding.imageHolder.width to binding.imageHolder.height
-        val scaling = minOf(1f * maxW / cat.width, 1f * maxH / cat.height)
-        val (newW, newH) = (cat.width * scaling).toInt() to (cat.height * scaling).toInt()
+        val (newW, newH) = getScaledSize(
+            sourceSize = cat.width to cat.height,
+            maxSize = binding.imageHolder.width to binding.imageHolder.height
+        )
+        println("source size: ${cat.width to cat.height}")
+        println("max size: ${binding.imageHolder.width to binding.imageHolder.height}")
+        println("new size: ${newW to newH}")
         binding.imgCat.layoutParams.width = newW
         binding.imgCat.layoutParams.height = newH
         imageLoader.loadTo(
             url = cat.imageUrl,
-            width = cat.width,
-            height = cat.height,
+            width = newW,
+            height = newH,
             target = binding.imgCat,
             onLoaded = {
                 binding.imgCat.toVisible()
@@ -96,6 +101,7 @@ class RandcatFragment : Fragment(R.layout.fragment_random_cat) {
         when (loadingState) {
             LoadingState.Loading -> binding.loader.toVisible()
             LoadingState.Idle -> binding.loader.toGone()
+            else -> {}
         }
 
     private fun handleEvent(event: RandcatEvent) =
