@@ -17,13 +17,53 @@ class EmailValidatorTest {
     }
 
     @Test
+    fun emailValidator_NoAtSignNoDomain_ReturnsFalse() {
+        assertFalse(EmailValidator.isValidEmail("name"))
+    }
+
+    @Test
+    fun emailValidator_NoDomain_ReturnsFalse() {
+        assertFalse(EmailValidator.isValidEmail("name@"))
+    }
+
+    @Test
+    fun emailValidator_NoAtSignNoDomainName_ReturnsFalse() {
+        assertFalse(EmailValidator.isValidEmail("name.com"))
+    }
+
+    @Test
+    fun emailValidator_NoUsernameNoDomainName_ReturnsFalse() {
+        assertFalse(EmailValidator.isValidEmail("@.com"))
+    }
+
+    @Test
+    fun emailValidator_NoDomainName_ReturnsFalse() {
+        assertFalse(EmailValidator.isValidEmail("name@.com"))
+    }
+
+    @Test
     fun emailValidator_InvalidEmailNoTld_ReturnsFalse() {
         assertFalse(EmailValidator.isValidEmail("name@email"))
     }
 
     @Test
+    fun emailValidator_InvalidEmailEmptyTld_ReturnsFalse() {
+        assertFalse(EmailValidator.isValidEmail("name@email."))
+    }
+
+    @Test
+    fun emailValidator_InvalidEmailBlankTld_ReturnsFalse() {
+        assertFalse(EmailValidator.isValidEmail("name@email.   "))
+    }
+
+    @Test
     fun emailValidator_InvalidEmailDoubleDot_ReturnsFalse() {
         assertFalse(EmailValidator.isValidEmail("name@email..com"))
+    }
+
+    @Test
+    fun emailValidator_InvalidEmailDoubleAtSign_ReturnsFalse() {
+        assertFalse(EmailValidator.isValidEmail("name@@email.com"))
     }
 
     @Test
