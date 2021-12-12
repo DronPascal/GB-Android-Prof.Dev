@@ -15,8 +15,8 @@ class ActivitySearchTester {
     companion object {
 
         fun checkText() {
-                Espresso.onView(ViewMatchers.withId(R.id.totalCountTextView))
-                    .check(ViewAssertions.matches(ViewMatchers.withText("Number of results: 42")))
+            Espresso.onView(ViewMatchers.withId(R.id.totalCountTextView))
+                .check(ViewAssertions.matches(ViewMatchers.withText("Number of results: 42")))
         }
     }
 }

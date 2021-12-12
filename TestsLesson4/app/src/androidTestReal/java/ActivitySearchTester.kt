@@ -15,10 +15,10 @@ class ActivitySearchTester {
     companion object {
 
         fun checkText() {
-                Espresso.onView(ViewMatchers.isRoot()).perform(delay())
-                Espresso.onView(ViewMatchers.withId(R.id.totalCountTextView))
-                    .check(ViewAssertions.matches(ViewMatchers.withText("Number of results: 2706")))
-            }
+            Espresso.onView(ViewMatchers.isRoot()).perform(delay())
+            Espresso.onView(ViewMatchers.withId(R.id.totalCountTextView))
+                .check(ViewAssertions.matches(ViewMatchers.withText("Number of results: 2706")))
+        }
 
         private fun delay(): ViewAction? {
             return object : ViewAction {

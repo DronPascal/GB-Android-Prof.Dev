@@ -1,7 +1,6 @@
 package com.geekbrains.tests.view.search
 
 import com.geekbrains.tests.presenter.RepositoryContract
-import com.geekbrains.tests.repository.FakeGitHubRepository
 import com.geekbrains.tests.repository.GitHubApi
 import com.geekbrains.tests.repository.GitHubRepository
 import retrofit2.Retrofit
