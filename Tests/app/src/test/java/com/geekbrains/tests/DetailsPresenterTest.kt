@@ -26,11 +26,36 @@ class DetailsPresenterTest {
     }
 
     @Test
+    fun onDetach_test() {
+        presenter.onDetach()
+
+        // use reflection to get access to private fields. shame on me
+        val privateField: Field = DetailsPresenter::class.java.getDeclaredField("viewContract")
+        privateField.isAccessible = true
+        val fieldValue = privateField.get(presenter) as ViewContract?
+
+        assertNull(fieldValue)
+    }
+
+    @Test
+    fun onAttach_test() {
+        presenter.onDetach()
+        presenter.onAttach(viewContract)
+
+        // use reflection to get access to private fields. shame on me
+        val privateField: Field = DetailsPresenter::class.java.getDeclaredField("viewContract")
+        privateField.isAccessible = true
+        val fieldValue = privateField.get(presenter) as ViewContract?
+
+        assertNotNull(fieldValue)
+    }
+
+    @Test
     fun setCounter_test() {
         // use reflection to get access to private fields. shame on me
         val privateField: Field = DetailsPresenter::class.java.getDeclaredField("count")
         privateField.isAccessible = true
-
+        
         val startCounter = privateField.get(presenter) as Int
         val offset = 10
         presenter.setCounter(startCounter + offset)
