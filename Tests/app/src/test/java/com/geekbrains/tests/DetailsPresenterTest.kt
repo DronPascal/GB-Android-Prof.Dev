@@ -55,7 +55,7 @@ class DetailsPresenterTest {
         // use reflection to get access to private fields. shame on me
         val privateField: Field = DetailsPresenter::class.java.getDeclaredField("count")
         privateField.isAccessible = true
-        
+
         val startCounter = privateField.get(presenter) as Int
         val offset = 10
         presenter.setCounter(startCounter + offset)

@@ -2,7 +2,6 @@ package com.geekbrains.tests.presenter.details
 
 import com.geekbrains.tests.view.ViewContract
 import com.geekbrains.tests.view.details.ViewDetailsContract
-import com.geekbrains.tests.view.search.ViewSearchContract
 
 internal class DetailsPresenter internal constructor(
     private var count: Int = 0
