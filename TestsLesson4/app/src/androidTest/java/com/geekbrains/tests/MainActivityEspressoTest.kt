@@ -1,16 +1,17 @@
 package com.geekbrains.tests
 
-import android.view.View
+import ActivitySearchTester
+import android.widget.TextView
+import androidx.lifecycle.Lifecycle
 import androidx.test.core.app.ActivityScenario
 import androidx.test.espresso.Espresso.onView
-import androidx.test.espresso.UiController
-import androidx.test.espresso.ViewAction
+import androidx.test.espresso.ViewAssertion
 import androidx.test.espresso.action.ViewActions.*
 import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.matcher.ViewMatchers.*
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.geekbrains.tests.view.search.MainActivity
-import org.hamcrest.Matcher
+import junit.framework.TestCase
 import org.junit.After
 import org.junit.Before
 import org.junit.Test
@@ -27,28 +28,83 @@ class MainActivityEspressoTest {
     }
 
     @Test
+    fun activity_AssertNotNull() {
+        scenario.onActivity {
+            TestCase.assertNotNull(it)
+        }
+    }
+
+    @Test
+    fun activity_IsResumed() {
+        TestCase.assertEquals(Lifecycle.State.RESUMED, scenario.state)
+    }
+
+    @Test
+    fun searchEditText_NotNull() {
+        scenario.onActivity {
+            val searchEditText = it.findViewById<TextView>(R.id.searchEditText)
+            TestCase.assertNotNull(searchEditText)
+        }
+    }
+
+    @Test
+    fun toDetailsButton_NotNull() {
+        scenario.onActivity {
+            val toDetailsButton = it.findViewById<TextView>(R.id.toDetailsActivityButton)
+            TestCase.assertNotNull(toDetailsButton)
+        }
+    }
+
+    @Test
+    fun totalCountTextView_NotNull() {
+        scenario.onActivity {
+            val totalCountTextView = it.findViewById<TextView>(R.id.totalCountTextView)
+            TestCase.assertNotNull(totalCountTextView)
+        }
+    }
+
+    @Test
+    fun searchEditText_HasHint() {
+        val assertion: ViewAssertion = matches(withHint(R.string.search_hint))
+        onView(withId(R.id.searchEditText)).check(assertion)
+    }
+
+    @Test
+    fun toDetailsButton_HasText() {
+        val assertion: ViewAssertion = matches(withText(R.string.to_details))
+        onView(withId(R.id.toDetailsActivityButton)).check(assertion)
+    }
+
+    @Test
+    fun totalCountTextView_HasText() {
+        val assertion: ViewAssertion = matches(withText(R.string.results_count))
+        onView(withId(R.id.totalCountTextView)).check(assertion)
+    }
+
+    @Test
+    fun searchEditText_IsCompletelyDisplayed() {
+        onView(withId(R.id.searchEditText)).check(matches(isCompletelyDisplayed()))
+    }
+
+    @Test
+    fun toDetailsButton_IsCompletelyDisplayed() {
+        onView(withId(R.id.toDetailsActivityButton)).check(matches(isCompletelyDisplayed()))
+    }
+
+    @Test
+    fun totalCountTextView_AreInvisible() {
+        onView(withId(R.id.totalCountTextView)).check(matches(withEffectiveVisibility(Visibility.INVISIBLE)))
+    }
+
+    @Test
     fun activitySearch_IsWorking() {
         onView(withId(R.id.searchEditText)).perform(click())
         onView(withId(R.id.searchEditText)).perform(replaceText("algol"), closeSoftKeyboard())
         onView(withId(R.id.searchEditText)).perform(pressImeActionButton())
 
-        if (BuildConfig.TYPE == MainActivity.FAKE) {
-            onView(withId(R.id.totalCountTextView)).check(matches(withText("Number of results: 42")))
-        } else {
-            onView(isRoot()).perform(delay())
-            onView(withId(R.id.totalCountTextView)).check(matches(withText("Number of results: 2283")))
-        }
+        ActivitySearchTester.checkText()
     }
 
-    private fun delay(): ViewAction? {
-        return object : ViewAction {
-            override fun getConstraints(): Matcher<View> = isRoot()
-            override fun getDescription(): String = "wait for $2 seconds"
-            override fun perform(uiController: UiController, v: View?) {
-                uiController.loopMainThreadForAtLeast(2000)
-            }
-        }
-    }
 
     @After
     fun close() {
