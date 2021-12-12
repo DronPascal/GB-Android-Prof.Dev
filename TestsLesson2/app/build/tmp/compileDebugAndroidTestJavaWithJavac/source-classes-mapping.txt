@@ -1,0 +1,2 @@
+com/geekbrains/myfirsttests/test/BuildConfig.java
+ com.geekbrains.myfirsttests.test.BuildConfig
