@@ -37,6 +37,9 @@ class MainActivity : AppCompatActivity(), ViewSearchContract {
         toDetailsActivityButton.setOnClickListener {
             startActivity(DetailsActivity.getIntent(this, totalCount))
         }
+        btnSearch.setOnClickListener{
+            commitSearch()
+        }
         setQueryListener()
         setRecyclerView()
     }
@@ -49,21 +52,25 @@ class MainActivity : AppCompatActivity(), ViewSearchContract {
     private fun setQueryListener() {
         searchEditText.setOnEditorActionListener(OnEditorActionListener { _, actionId, _ ->
             if (actionId == EditorInfo.IME_ACTION_SEARCH) {
-                val query = searchEditText.text.toString()
-                if (query.isNotBlank()) {
-                    presenter.searchGitHub(query)
-                    return@OnEditorActionListener true
-                } else {
-                    Toast.makeText(
-                        this@MainActivity,
-                        getString(R.string.enter_search_word),
-                        Toast.LENGTH_SHORT
-                    ).show()
-                    return@OnEditorActionListener false
-                }
+                commitSearch().also { return@OnEditorActionListener it }
             }
             false
         })
+    }
+
+    private fun commitSearch(): Boolean {
+        val query = searchEditText.text.toString()
+        if (query.isNotBlank()) {
+            presenter.searchGitHub(query)
+            return true
+        } else {
+            Toast.makeText(
+                this@MainActivity,
+                getString(R.string.enter_search_word),
+                Toast.LENGTH_SHORT
+            ).show()
+            return false
+        }
     }
 
     private fun createRepository(): RepositoryContract {
