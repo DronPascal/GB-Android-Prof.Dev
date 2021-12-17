@@ -111,6 +111,33 @@ class BehaviorTest {
         Assert.assertEquals(changedText.text, "Number of results: 0")
     }
 
+    @Test
+    fun test_countOnDetailsScreen() {
+        val editText = uiDevice.findObject(By.res(packageName, "searchEditText"))
+        editText.text = "Android"
+        val searchButton = uiDevice.findObject(By.res(packageName, "btnSearch"))
+        searchButton.click()
+
+        var changedText =
+            uiDevice.wait(
+                Until.findObject(By.res(packageName, "totalCountTextView")),
+                TIMEOUT
+            )
+        val resultText = changedText.text.toString()
+
+        val toDetails: UiObject2 =
+            uiDevice.findObject(By.res(packageName, "toDetailsActivityButton"))
+        toDetails.click()
+
+        changedText.clear()
+        changedText = uiDevice.wait(
+            Until.findObject(By.res(packageName, "totalCountTextView")),
+            TIMEOUT
+        )
+        Assert.assertEquals(changedText.text.toString(), resultText)
+    }
+
+
     companion object {
         private const val TIMEOUT = 5000L
     }
