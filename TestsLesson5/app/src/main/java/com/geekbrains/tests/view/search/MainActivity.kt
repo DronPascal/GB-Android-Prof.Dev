@@ -37,7 +37,7 @@ class MainActivity : AppCompatActivity(), ViewSearchContract {
         toDetailsActivityButton.setOnClickListener {
             startActivity(DetailsActivity.getIntent(this, totalCount))
         }
-        btnSearch.setOnClickListener{
+        btnSearch.setOnClickListener {
             commitSearch()
         }
         setQueryListener()
